@@ -10,12 +10,9 @@ const percentages = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
 export const ProgressBar = ({ frameData }: Props) => {
   const numberOfFrames = Object.entries(frameData).length - 1
 
-  const rgbForPercentageFrame = percentages.map((percentage) => {
-    return frameData[Math.round((numberOfFrames * percentage) / 100)]
-  })
-
-  const colorsArray = rgbForPercentageFrame.map((data) => {
-    const { avgR, avgG, avgB } = data
+  const colorsArray = percentages.map((percentage) => {
+    const frame = frameData[Math.round((numberOfFrames * percentage) / 100)]
+    const { avgR, avgG, avgB } = frame
     return `rgb(${avgR},${avgG},${avgB})`
   })
 
