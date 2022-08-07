@@ -33,6 +33,18 @@ export const VideoPlayer = () => {
     setIsPlaying(false)
   }
 
+  const [progress, setProgress] = React.useState(0)
+
+  React.useEffect(() => {
+    const interval = setInterval(() => {
+      const currentTime = ref.current?.currentTime ?? 0
+      const duration = ref.current?.duration ?? 0
+      setProgress((currentTime / duration) * 100)
+    }, 32)
+
+    return () => clearInterval(interval)
+  }, [])
+
   return (
     <div
       className={styles.container}
@@ -53,7 +65,7 @@ export const VideoPlayer = () => {
       <button className={styles.toggleVideoButton} onClick={toggleVideo}>
         {isPlaying ? '❚ ❚' : '►'}
       </button>
-      <ProgressBar frameData={frameData} />
+      <ProgressBar frameData={frameData} progress={progress} />
     </div>
   )
 }
