@@ -8,7 +8,7 @@ const userId = '100'
 const orgId = 'Lumi'
 const deviceId = 'LabEye-dVr'
 
-type FrameData = Record<string, FrameDataItem>
+export type FrameData = Record<string, FrameDataItem>
 
 type FrameDataItem = {
   avgR: number

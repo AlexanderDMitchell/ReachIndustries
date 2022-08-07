@@ -1,9 +1,10 @@
 import React, { ForwardedRef } from 'react'
 import { useFetch } from '../../hooks/useFetch'
+import { ProgressBar } from '../ProgressBar/ProgressBar'
 import styles from './VideoPlayer.module.css'
 
 export const VideoPlayer = () => {
-  const { videoSource, roi } = useFetch()
+  const { videoSource, roi, frameData } = useFetch()
 
   const ref = React.useRef<HTMLVideoElement>(null)
   const [isPlaying, setIsPlaying] = React.useState(false)
@@ -52,6 +53,7 @@ export const VideoPlayer = () => {
       <button className={styles.toggleVideoButton} onClick={toggleVideo}>
         {isPlaying ? '❚ ❚' : '►'}
       </button>
+      <ProgressBar frameData={frameData} />
     </div>
   )
 }
