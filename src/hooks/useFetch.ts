@@ -10,7 +10,7 @@ const deviceId = 'LabEye-dVr'
 
 export type FrameData = Record<string, FrameDataItem>
 
-type FrameDataItem = {
+export type FrameDataItem = {
   avgR: number
   avgG: number
   avgB: number

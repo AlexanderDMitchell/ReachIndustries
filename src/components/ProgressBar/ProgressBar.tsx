@@ -5,20 +5,17 @@ interface Props {
   frameData: FrameData
   progress: number
   onClick: (percentage: number) => void
+  background: string
 }
 
-const width = 500
-const percentages = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
+const width = 500 // TODO:
 
-export const ProgressBar = ({ frameData, progress, onClick }: Props) => {
-  const numberOfFrames = Object.entries(frameData).length - 1
-
-  const colorsArray = percentages.map((percentage) => {
-    const frame = frameData[Math.round((numberOfFrames * percentage) / 100)]
-    const { avgR, avgG, avgB } = frame
-    return `rgb(${avgR},${avgG},${avgB})`
-  })
-
+export const ProgressBar = ({
+  frameData,
+  progress,
+  onClick,
+  background
+}: Props) => {
   return (
     <div
       onClick={(event) => {
@@ -26,9 +23,7 @@ export const ProgressBar = ({ frameData, progress, onClick }: Props) => {
         onClick(percentage)
       }}
       className={styles.bar}
-      style={{
-        background: `linear-gradient(0.25turn, ${colorsArray.join(',')})`
-      }}>
+      style={{ background }}>
       <div
         className={styles.progress}
         style={{ left: (width * progress) / 100 }}
