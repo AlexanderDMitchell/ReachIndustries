@@ -1,10 +1,13 @@
 import './App.css'
 import { VideoPlayer } from './components/VideoPlayer/VideoPlayer'
+import { useFetch } from './hooks/useFetch'
 
 function App() {
+  const { videoSource } = useFetch()
+
   return (
     <div className={'App'}>
-      <VideoPlayer src={'http://www.w3schools.com/html/mov_bbb.mp4'} />
+      <VideoPlayer src={videoSource} />
     </div>
   )
 }
