@@ -52,13 +52,6 @@ module.exports = {
     'no-irregular-whitespace': 'off',
     'no-else-return': 'error',
     'no-param-reassign': 'error',
-    'no-restricted-syntax': [
-      'error',
-      {
-        selector: 'ExportDefaultDeclaration',
-        message: 'Prefer named exports'
-      }
-    ],
     'no-shadow': 'off',
     'no-throw-literal': 'error',
     'no-undef-init': 'error',
@@ -84,14 +77,7 @@ module.exports = {
     'react/prop-types': 'off',
     'react/react-in-jsx-scope': 'off',
     'react/self-closing-comp': 'error',
-    'require-yield': 'off',
-    'simple-import-sort/imports': [
-      'error',
-      {
-        groups: [['^\\u0000'], ['^react', '^@?\\w'], ['^(app)(/.*|$)']]
-      }
-    ],
-    'sort-imports': 'off'
+    'require-yield': 'off'
   },
   settings: {
     react: {
