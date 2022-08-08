@@ -2,6 +2,7 @@ html,
 body,
 #root {
   height: 100%;
+  overflow: auto;
 }
 
 body {
@@ -11,6 +12,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box; /* Opera/IE 8+ */
 }
 
 code {
