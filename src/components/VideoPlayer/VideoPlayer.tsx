@@ -8,6 +8,7 @@ import { useVideoPayer } from './useVideoPlayer'
 import styles from './VideoPlayer.module.css'
 
 // @TODO: use roi instead of hardcoded values
+// See README
 const coordinates = [38, 70, 20, 45]
 const videoHeight = 300
 const videoWidth = 500
@@ -49,7 +50,7 @@ export const VideoPlayer = () => {
         }}
       />
       <video ref={ref} height={'100%'} width={'100%'}>
-        <source src={videoSource} />
+        <source src={require('./frontend_test.mp4')} />
       </video>
       <Button className={styles.toggleVideoButton} onClick={toggleVideo}>
         {isPlaying ? '❚ ❚' : '►'}
