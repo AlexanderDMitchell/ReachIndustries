@@ -1,6 +1,7 @@
 import React, { ForwardedRef } from 'react'
 import { useTheme } from '../../context/ThemeProvider'
 import { FrameDataItem, useFetch } from '../../hooks/useFetch'
+import { Button } from '../Button/Button'
 import { DataSection } from '../DataSection/DataSection'
 import { ProgressBar } from '../ProgressBar/ProgressBar'
 import styles from './VideoPlayer.module.css'
@@ -86,9 +87,9 @@ export const VideoPlayer = () => {
     <div
       className={styles.container}
       style={{ width: videoWidth, height: videoHeight }}>
-      <button onClick={() => toggleDarkMode()}>
+      <Button onClick={() => toggleDarkMode()}>
         {darkMode ? 'Light' : 'Dark'}
-      </button>
+      </Button>
       <div
         className={styles.boundingBox}
         style={{
@@ -99,11 +100,11 @@ export const VideoPlayer = () => {
         }}
       />
       <video ref={ref} height={'100%'} width={'100%'}>
-        <source src={videoSource} />
+        <source src={require('./frontend_test.mp4')} />
       </video>
-      <button className={styles.toggleVideoButton} onClick={toggleVideo}>
+      <Button className={styles.toggleVideoButton} onClick={toggleVideo}>
         {isPlaying ? '❚ ❚' : '►'}
-      </button>
+      </Button>
       <ProgressBar
         frameData={frameData}
         progress={progress}
