@@ -1,4 +1,5 @@
 import React, { ForwardedRef } from 'react'
+import { useTheme } from '../../context/ThemeProvider'
 import { FrameDataItem, useFetch } from '../../hooks/useFetch'
 import { DataSection } from '../DataSection/DataSection'
 import { ProgressBar } from '../ProgressBar/ProgressBar'
@@ -79,10 +80,15 @@ export const VideoPlayer = () => {
     return () => clearInterval(interval)
   }, [numberOfFrames])
 
+  const { darkMode, toggleDarkMode } = useTheme()
+
   return (
     <div
       className={styles.container}
       style={{ width: videoWidth, height: videoHeight }}>
+      <button onClick={() => toggleDarkMode()}>
+        {darkMode ? 'Light' : 'Dark'}
+      </button>
       <div
         className={styles.boundingBox}
         style={{
@@ -108,7 +114,7 @@ export const VideoPlayer = () => {
         frameNumber={currentFrame}
         boundingBox={roi.join(', ').toString()}
         histogram={currentFrameData?.histDiff ?? 0}
-        color={currentColor}
+        frameColor={currentColor}
       />
     </div>
   )

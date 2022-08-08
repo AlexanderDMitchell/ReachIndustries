@@ -1,30 +1,37 @@
+import { useTheme } from '../../context/ThemeProvider'
 import styles from './DataSection.module.css'
 
 interface Props {
   frameNumber: number
   boundingBox: string
   histogram: number
-  color: string
+  frameColor: string
 }
 
 export const DataSection = ({
   frameNumber,
   boundingBox,
   histogram,
-  color
+  frameColor
 }: Props) => {
+  const { pallet } = useTheme()
+  const color = pallet[1]
+
   return (
     <div className={styles.container}>
-      <h5>Frame information</h5>
+      <h5 style={{ color }}>Frame information</h5>
       <div className={styles.row}>
         <div className={styles.column}>
-          <p>{`Frame number: ${frameNumber}`}</p>
-          <p>{`Bounding box: ${boundingBox}`}</p>
-          <p>{`Histogram: ${histogram}`}</p>
+          <p style={{ color }}>{`Frame number: ${frameNumber}`}</p>
+          <p style={{ color }}>{`Bounding box: ${boundingBox}`}</p>
+          <p style={{ color }}>{`Histogram: ${histogram}`}</p>
         </div>
         <div className={styles.column}>
-          <p>R G B</p>
-          <div className={styles.colorBox} style={{ backgroundColor: color }} />
+          <p style={{ color }}>R G B</p>
+          <div
+            className={styles.colorBox}
+            style={{ backgroundColor: frameColor }}
+          />
         </div>
       </div>
     </div>
