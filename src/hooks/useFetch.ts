@@ -4,8 +4,6 @@ import { cvmdata } from '../frontend_test'
 const GET_DEVICES_URL = 'https://mockapi.lumi.systems/getdevices'
 const GET_DEVICE_DATA_URL = 'https://mockapi.lumi.systems/getdevicedata'
 
-const userId = '100'
-const orgId = 'Lumi'
 const deviceId = 'LabEye-dVr'
 
 export type FrameData = Record<string, FrameDataItem>
@@ -17,7 +15,13 @@ export type FrameDataItem = {
   histDiff: number
 }
 
-export const useFetch = () => {
+export const useFetch = ({
+  userId,
+  orgId
+}: {
+  userId: string
+  orgId: string
+}) => {
   const [roi, _setRoi] = React.useState<number[]>(cvmdata.RoI)
   const [devices, setDevices] = React.useState<string[]>([])
   const [frameData, _setFrameData] = React.useState<FrameData>(
@@ -32,7 +36,7 @@ export const useFetch = () => {
       .then(function (data) {
         setDevices(data?.output)
       })
-  }, [])
+  }, [userId, orgId])
 
   React.useEffect(() => {
     fetch(`${GET_DEVICE_DATA_URL}?deviceId=${deviceId}`)

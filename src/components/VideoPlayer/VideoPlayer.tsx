@@ -3,6 +3,7 @@ import { useTheme } from '../../context/ThemeProvider'
 import { FrameDataItem, useFetch } from '../../hooks/useFetch'
 import { Button } from '../Button/Button'
 import { DataSection } from '../DataSection/DataSection'
+import { LoginModal } from '../LoginModal/LoginModal'
 import { ProgressBar } from '../ProgressBar/ProgressBar'
 import { useVideoPayer } from './useVideoPlayer'
 import styles from './VideoPlayer.module.css'
@@ -15,7 +16,14 @@ const videoWidth = 500
 
 export const VideoPlayer = () => {
   const { darkMode, toggleDarkMode } = useTheme()
-  const { videoSource, roi, frameData } = useFetch()
+
+  const [userId, setUserId] = React.useState('100')
+  const [orgId, setOrgId] = React.useState('Lumi')
+  const { videoSource, roi, frameData } = useFetch({ userId, orgId })
+
+  const [modalIsVisible, setModalIsVisible] = React.useState(false)
+  const toggleModal = () => setModalIsVisible((current) => !current)
+
   const {
     ref,
     isPlaying,
@@ -37,6 +45,7 @@ export const VideoPlayer = () => {
     <div
       className={styles.container}
       style={{ width: videoWidth, height: videoHeight }}>
+      <Button onClick={toggleModal}>Modal</Button>
       <Button onClick={() => toggleDarkMode()}>
         {darkMode ? 'Light' : 'Dark'}
       </Button>
@@ -66,6 +75,16 @@ export const VideoPlayer = () => {
         boundingBox={roi.join(', ').toString()}
         histogram={currentFrameData?.histDiff ?? 0}
         frameColor={currentColor}
+      />
+      <LoginModal
+        userId={userId}
+        orgId={orgId}
+        isVisible={modalIsVisible}
+        toggleIsVisible={toggleModal}
+        onConfirm={({ userIdDraft, orgIdDraft }) => {
+          setUserId(userIdDraft)
+          setOrgId(orgIdDraft)
+        }}
       />
     </div>
   )
