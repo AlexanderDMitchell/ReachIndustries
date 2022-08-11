@@ -6,3 +6,9 @@
 .formContainer * {
   margin-bottom: 8px;
 }
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 32px;
+}

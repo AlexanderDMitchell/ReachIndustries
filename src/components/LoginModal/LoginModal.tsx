@@ -35,14 +35,16 @@ export const LoginModal = ({
           onChange={(event) => setOrgIdDraft(event.target.value)}
         />
       </div>
-      <Button onClick={toggleIsVisible}>Cancel</Button>
-      <Button
-        onClick={() => {
-          onConfirm({ userIdDraft, orgIdDraft })
-          toggleIsVisible()
-        }}>
-        Confirm
-      </Button>
+      <div className={styles.buttons}>
+        <Button onClick={toggleIsVisible}>Cancel</Button>
+        <Button
+          onClick={() => {
+            onConfirm({ userIdDraft, orgIdDraft })
+            toggleIsVisible()
+          }}>
+          Confirm
+        </Button>
+      </div>
     </Modal>
   )
 }
