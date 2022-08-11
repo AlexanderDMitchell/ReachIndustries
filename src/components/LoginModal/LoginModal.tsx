@@ -22,7 +22,7 @@ export const LoginModal = ({
   const [orgIdDraft, setOrgIdDraft] = React.useState(orgId)
 
   return (
-    <Modal isVisible={isVisible}>
+    <Modal isVisible={isVisible} toggleIsVisible={toggleIsVisible}>
       <div className={styles.formContainer}>
         <p>User Id</p>
         <input
