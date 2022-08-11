@@ -17,3 +17,13 @@
   border: 5px solid red;
   z-index: 999;
 }
+
+.buttons {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+}
+
+.buttons * {
+  margin-bottom: 8px;
+}

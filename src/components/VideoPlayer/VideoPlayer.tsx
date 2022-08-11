@@ -42,50 +42,54 @@ export const VideoPlayer = () => {
   const marginTop = (coordinates[3] / 100) * videoHeight
 
   return (
-    <div
-      className={styles.container}
-      style={{ width: videoWidth, height: videoHeight }}>
-      <Button onClick={toggleModal}>Modal</Button>
-      <Button onClick={() => toggleDarkMode()}>
-        {darkMode ? 'Light' : 'Dark'}
-      </Button>
+    <>
+      <div className={styles.buttons}>
+        <Button onClick={toggleModal}>Modal</Button>
+        <Button onClick={() => toggleDarkMode()}>
+          {darkMode ? 'Light' : 'Dark'}
+        </Button>
+      </div>
       <div
-        className={styles.boundingBox}
-        style={{
-          width,
-          height,
-          marginLeft,
-          marginTop
-        }}
-      />
-      <video ref={ref} height={'100%'} width={'100%'}>
-        <source src={require('./frontend_test.mp4')} />
-      </video>
-      <Button className={styles.toggleVideoButton} onClick={toggleVideo}>
-        {isPlaying ? '❚ ❚' : '►'}
-      </Button>
-      <ProgressBar
-        frameData={frameData}
-        progress={progress}
-        onClick={onClickProgressBar}
-        background={`linear-gradient(0.25turn, ${colorsArray.join(',')})`}
-      />
-      <DataSection
-        frameNumber={currentFrame}
-        boundingBox={roi.join(', ').toString()}
-        histogram={currentFrameData?.histDiff ?? 0}
-        frameColor={currentColor}
-      />
-      <LoginModal
-        userId={userId}
-        orgId={orgId}
-        isVisible={modalIsVisible}
-        toggleIsVisible={toggleModal}
-        onConfirm={({ userIdDraft, orgIdDraft }) => {
-          setUserId(userIdDraft)
-          setOrgId(orgIdDraft)
-        }}
-      />
-    </div>
+        className={styles.container}
+        style={{ width: videoWidth, height: videoHeight }}>
+        <div
+          className={styles.boundingBox}
+          style={{
+            width,
+            height,
+            marginLeft,
+            marginTop
+          }}
+        />
+        <video ref={ref} height={'100%'} width={'100%'}>
+          <source src={require('./frontend_test.mp4')} />
+        </video>
+        <Button className={styles.toggleVideoButton} onClick={toggleVideo}>
+          {isPlaying ? '❚ ❚' : '►'}
+        </Button>
+        <ProgressBar
+          frameData={frameData}
+          progress={progress}
+          onClick={onClickProgressBar}
+          background={`linear-gradient(0.25turn, ${colorsArray.join(',')})`}
+        />
+        <DataSection
+          frameNumber={currentFrame}
+          boundingBox={roi.join(', ').toString()}
+          histogram={currentFrameData?.histDiff ?? 0}
+          frameColor={currentColor}
+        />
+        <LoginModal
+          userId={userId}
+          orgId={orgId}
+          isVisible={modalIsVisible}
+          toggleIsVisible={toggleModal}
+          onConfirm={({ userIdDraft, orgIdDraft }) => {
+            setUserId(userIdDraft)
+            setOrgId(orgIdDraft)
+          }}
+        />
+      </div>
+    </>
   )
 }
