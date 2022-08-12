@@ -1,5 +1,6 @@
 .container {
   position: relative;
+  margin-top: 8px;
 }
 
 .playButton {
@@ -26,4 +27,10 @@
 
 .buttons * {
   margin-bottom: 8px;
+}
+
+.toggleVideoButton {
+  position: absolute;
+  top: 0;
+  left: 0;
 }
