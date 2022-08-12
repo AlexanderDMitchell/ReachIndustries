@@ -62,7 +62,8 @@ export const VideoPlayer = () => {
           }}
         />
         <video ref={ref} height={'100%'} width={'100%'}>
-          <source src={videoSource} />
+          {/* <source src={videoSource} /> See README */}
+          <source src={require('./frontend_test.mp4')} />
         </video>
         <Button className={styles.toggleVideoButton} onClick={toggleVideo}>
           {isPlaying ? '❚ ❚' : '►'}
